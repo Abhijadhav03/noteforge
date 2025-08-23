@@ -30,6 +30,7 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { MagicCard } from './../magicui/magic-card';
 
 const formSchema = z.object({
   email: z.email(),
@@ -76,7 +77,9 @@ export function LoginForm({
   }
 
   return (
+   
     <div className={cn("flex flex-col gap-6", className)} {...props}>
+     
       <Card>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
@@ -158,6 +161,8 @@ export function LoginForm({
           </Form>
         </CardContent>
       </Card>
+     
     </div>
+   
   );
 }

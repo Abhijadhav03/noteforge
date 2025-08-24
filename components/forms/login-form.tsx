@@ -1,7 +1,6 @@
 "use client";
 
 import { z } from "zod";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -30,10 +29,10 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import { MagicCard } from './../magicui/magic-card';
+import { Confetti } from "@/components/magicui/confetti"; 
 
 const formSchema = z.object({
-  email: z.email(),
+  email: z.string().email(),
   password: z.string().min(8),
 });
 
@@ -44,6 +43,8 @@ export function LoginForm({
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false); // Confetti state
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -65,7 +66,11 @@ export function LoginForm({
       const response = await signInUser(values.email, values.password);
       if (response.success) {
         toast.success(response.message);
-        router.push("/dashboard");
+        setShowConfetti(true); //  trigger confetti
+        setTimeout(() => {
+          setShowConfetti(false); // auto stop after 2s
+          router.push("/dashboard");
+        }, 2000);
       } else {
         toast.error(response.message);
       }
@@ -77,9 +82,8 @@ export function LoginForm({
   }
 
   return (
-   
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-     
+      {showConfetti && <Confetti />} {/* 🎉 Show confetti */}
       <Card>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
@@ -91,6 +95,7 @@ export function LoginForm({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="flex flex-col gap-6">
+                {/* Email */}
                 <div className="grid gap-3">
                   <FormField
                     control={form.control}
@@ -106,6 +111,7 @@ export function LoginForm({
                     )}
                   />
                 </div>
+                {/* Password */}
                 <div className="grid gap-3">
                   <FormField
                     control={form.control}
@@ -133,6 +139,7 @@ export function LoginForm({
                     )}
                   />
                 </div>
+                {/* Buttons */}
                 <div className="flex flex-col gap-3">
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading ? (
@@ -151,6 +158,7 @@ export function LoginForm({
                   </Button>
                 </div>
               </div>
+              {/* Signup link */}
               <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}
                 <Link href="/signup" className="underline underline-offset-4">
@@ -161,8 +169,6 @@ export function LoginForm({
           </Form>
         </CardContent>
       </Card>
-     
     </div>
-   
   );
 }

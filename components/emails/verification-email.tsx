@@ -7,8 +7,6 @@ import {
   Section,
   Text,
   Button,
-  Hr,
-  Tailwind,
 } from "@react-email/components";
 
 interface VerificationEmailProps {
@@ -21,87 +19,71 @@ const VerificationEmail = ({
   verificationUrl,
 }: VerificationEmailProps) => {
   return (
-    <Html lang="en" dir="ltr">
-      <Tailwind>
-        <Head />
-        <Body className="bg-gray-100 font-sans py-[40px]">
-          <Container className="bg-white rounded-[8px] shadow-sm max-w-[600px] mx-auto p-[40px]">
-            {/* Header */}
-            <Section className="text-center mb-[32px]">
-              <Text className="text-[24px] font-bold text-gray-900 m-0">
-                Verify Your Email Address
-              </Text>
-            </Section>
+    <Html lang="en">
+      <Head />
+      <Body style={{ backgroundColor: "#f4f4f4", fontFamily: "Arial, sans-serif", margin: 0, padding: 0 }}>
+        <Container style={{ backgroundColor: "#ffffff", maxWidth: "600px", margin: "40px auto", padding: "30px", borderRadius: "6px" }}>
+          
+          {/* Header */}
+          <Section style={{ textAlign: "center", marginBottom: "24px" }}>
+            <Text style={{ fontSize: "22px", fontWeight: "bold", margin: 0 }}>
+              Confirm Your Email
+            </Text>
+          </Section>
 
-            {/* Main Content */}
-            <Section className="mb-[32px]">
-              <Text className="text-[16px] text-gray-700 leading-[24px] mb-[16px]">
-                Hi {userName},
-              </Text>
-              <Text className="text-[16px] text-gray-700 leading-[24px] mb-[16px]">
-                Thank you for signing up! To complete your account setup and
-                start using our services, please verify your email address by
-                clicking the button below.
-              </Text>
-              <Text className="text-[16px] text-gray-700 leading-[24px] mb-[24px]">
-                This verification link will expire in 24 hours for security
-                purposes.
-              </Text>
-            </Section>
+          {/* Main Content */}
+          <Section style={{ marginBottom: "24px" }}>
+            <Text style={{ fontSize: "16px", color: "#333", marginBottom: "16px" }}>
+              Hi {userName || "there"},
+            </Text>
+            <Text style={{ fontSize: "16px", color: "#333", marginBottom: "16px" }}>
+              Thanks for signing up! Please confirm your email to activate your NoteForge account by clicking the button below.
+            </Text>
+          </Section>
 
-            {/* Verification Button */}
-            <Section className="text-center mb-[32px]">
-              <Button
-                href={verificationUrl}
-                className="bg-blue-600 text-white px-[32px] py-[12px] rounded-[6px] text-[16px] font-semibold no-underline box-border hover:bg-blue-700"
-              >
-                Verify Email Address
-              </Button>
-            </Section>
+          {/* Verification Button */}
+          <Section style={{ textAlign: "center", marginBottom: "24px" }}>
+            <Button
+              href={verificationUrl}
+              style={{
+                backgroundColor: "#2563EB",
+                color: "#ffffff",
+                padding: "12px 24px",
+                borderRadius: "4px",
+                fontSize: "16px",
+                textDecoration: "none",
+                display: "inline-block",
+              }}
+            >
+              Confirm Email
+            </Button>
+          </Section>
 
-            {/* Alternative Link */}
-            <Section className="mb-[32px]">
-              <Text className="text-[14px] text-gray-600 leading-[20px] mb-[8px]">
-                If the button doesn&apos;t work, you can copy and paste this
-                link into your browser:
-              </Text>
-              <Text className="text-[14px] text-blue-600 break-all">
-                {verificationUrl}
-              </Text>
-            </Section>
+          {/* Alternative Link */}
+          <Section style={{ marginBottom: "24px" }}>
+            <Text style={{ fontSize: "14px", color: "#555", marginBottom: "8px" }}>
+              If the button doesn&apos;t work, copy and paste this link into your browser:
+            </Text>
+            <Text style={{ fontSize: "14px", color: "#2563EB", wordBreak: "break-all" }}>
+              {verificationUrl}
+            </Text>
+          </Section>
 
-            <Hr className="border-gray-200 my-[24px]" />
+          {/* Footer */}
+          <Section style={{ borderTop: "1px solid #ddd", paddingTop: "16px" }}>
+            <Text style={{ fontSize: "12px", color: "#777", marginBottom: "4px" }}>
+              This email was sent by NoteForge.
+            </Text>
+            <Text style={{ fontSize: "12px", color: "#777" }}>
+              You’re receiving this because you signed up on our website.
+            </Text>
+          </Section>
 
-            {/* Security Notice */}
-            <Section className="mb-[24px]">
-              <Text className="text-[14px] text-gray-600 leading-[20px] mb-[8px]">
-                <strong>Security Notice:</strong>
-              </Text>
-              <Text className="text-[14px] text-gray-600 leading-[20px]">
-                If you didn &apos;t create an account with us, please ignore
-                this email. Your email address will not be added to our system
-                without verification.
-              </Text>
-            </Section>
-
-            {/* Footer */}
-            <Section className="border-t border-gray-200 pt-[24px]">
-              <Text className="text-[12px] text-gray-500 leading-[16px] m-0 mb-[8px]">
-                This email was sent by Your Company Name
-              </Text>
-              <Text className="text-[12px] text-gray-500 leading-[16px] m-0 mb-[8px]">
-                123 Business Street, Suite 100, City, State 12345
-              </Text>
-              <Text className="text-[12px] text-gray-500 leading-[16px] m-0">
-                © {new Date().getFullYear()} Your Company Name. All rights
-                reserved.
-              </Text>
-            </Section>
-          </Container>
-        </Body>
-      </Tailwind>
+        </Container>
+      </Body>
     </Html>
   );
 };
 
 export default VerificationEmail;
+

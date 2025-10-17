@@ -12,9 +12,16 @@ import {
   Text,
   Tailwind,
 } from '@react-email/components';
+import { request } from 'http';
 
-const PasswordResetEmail = (props : any) => {
-  const { userEmail, resetLink, companyName } = props;
+interface PasswordResetEmailProps {
+  userName?: string;
+  resetUrl: string;
+  requestTime?: string;
+}
+
+const PasswordResetEmail = (props: PasswordResetEmailProps) => {
+  const { userName, resetUrl, requestTime } = props;
 
   return (
     <Html lang="en" dir="ltr">
@@ -39,7 +46,7 @@ const PasswordResetEmail = (props : any) => {
                 Hello,
               </Text>
               <Text className="text-[16px] text-gray-700 leading-[24px] mb-[16px]">
-                We received a request to reset the password for your account associated with <strong>{userEmail}</strong>.
+                We received a request to reset the password for your account associated with <strong>{userName}</strong>.
               </Text>
               <Text className="text-[16px] text-gray-700 leading-[24px] mb-[24px]">
                 If you made this request, click the button below to reset your password. This link will expire in 24 hours for security reasons.
@@ -49,7 +56,7 @@ const PasswordResetEmail = (props : any) => {
             {/* Reset Button */}
             <Section className="text-center mb-[32px]">
               <Button
-                href={resetLink}
+                href={resetUrl}
                 className="bg-blue-600 text-white px-[32px] py-[16px] rounded-[8px] text-[16px] font-semibold no-underline box-border inline-block"
               >
                 Reset Your Password
@@ -62,10 +69,10 @@ const PasswordResetEmail = (props : any) => {
                 If the button doesn't work, you can copy and paste this link into your browser:
               </Text>
               <Link
-                href={resetLink}
+                href={resetUrl}
                 className="text-blue-600 text-[14px] break-all underline"
               >
-                {resetLink}
+                {resetUrl}
               </Link>
             </Section>
 
@@ -93,15 +100,15 @@ const PasswordResetEmail = (props : any) => {
             <Section className="border-t border-gray-200 pt-[24px]">
               <Text className="text-[12px] text-gray-500 leading-[16px] m-0 mb-[8px]">
                 Best regards,<br />
-                The {companyName} Team
+                The Noteforge Team
               </Text>
               <Text className="text-[12px] text-gray-400 leading-[16px] m-0 mb-[8px]">
-                {companyName}, Inc.<br />
+                Noteforge, Inc.<br />
                 123 Business Street, Suite 100<br />
                 San Francisco, CA 94105
               </Text>
               <Text className="text-[12px] text-gray-400 leading-[16px] m-0">
-                © {new Date().getFullYear()} {companyName}. All rights reserved.{' '}
+                © {new Date().getFullYear()} Noteforge. All rights reserved.{' '}
                 <Link href="#" className="text-gray-400 underline">
                   Unsubscribe
                 </Link>
@@ -115,9 +122,9 @@ const PasswordResetEmail = (props : any) => {
 };
 
 PasswordResetEmail.PreviewProps = {
-  userEmail: "jadhavabhishek53366@gmail.com",
-  resetLink: "https://yourapp.com/reset-password?token=abc123xyz789",
-  companyName: "YourCompany",
+  userName: "John Doe",
+  resetUrl: "https://yourapp.com/reset-password?token=abc123xyz789",
+  //requestTime: new Date().toLocaleString(),
 };
 
 export default PasswordResetEmail;

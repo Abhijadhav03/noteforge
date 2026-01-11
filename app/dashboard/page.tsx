@@ -1,13 +1,27 @@
-"use client"
-import { Logout } from './../../components/logout';
+import { CreateNotebookButton } from "@/components/create-notebook";
+import NotebookCard from "@/components/notebook-card";
+import { PageWrapper } from "@/components/page-wrapper";
+import { getNotebooks } from "@/server/notebooks";
 
-export default function Page() {
+export default async function Page() {
+    const notebooks = await getNotebooks();
+
     return (
-        <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-            <div className="w-full max-w-sm">
-                <h1>Hello from Dashboard</h1>
-                <Logout />
+        <PageWrapper breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }]}>
+            <h1>Notebooks</h1>
+
+            <CreateNotebookButton />
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {notebooks.success &&
+                    notebooks?.notebooks?.map((notebook) => (
+                        <NotebookCard key={notebook.id} notebook={notebook} />
+                    ))}
             </div>
-        </div>
-    )
+
+            {notebooks.success && notebooks?.notebooks?.length === 0 && (
+                <div>No notebooks found</div>
+            )}
+        </PageWrapper>
+    );
 }

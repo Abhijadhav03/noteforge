@@ -42,7 +42,6 @@ export function SignupForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false);
-  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -69,7 +68,6 @@ export function SignupForm({
       );
       if (response.success) {
         toast.success("Please check your email for verification.");
-        
       } else {
         toast.error(response.message);
       }

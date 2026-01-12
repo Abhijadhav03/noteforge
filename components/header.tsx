@@ -6,7 +6,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useScroll } from "motion/react";
 import Image from "next/image";
-import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
+
 import { ModeToggle } from "./mode-toggle";
 
 const menuItems: { name: string; href: string }[] = [];

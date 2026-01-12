@@ -12,7 +12,6 @@ import {
   Text,
   Tailwind,
 } from '@react-email/components';
-import { request } from 'http';
 
 interface PasswordResetEmailProps {
   userName?: string;
@@ -21,7 +20,7 @@ interface PasswordResetEmailProps {
 }
 
 const PasswordResetEmail = (props: PasswordResetEmailProps) => {
-  const { userName, resetUrl, requestTime } = props;
+  const { userName, resetUrl } = props;
 
   return (
     <Html lang="en" dir="ltr">
@@ -66,7 +65,7 @@ const PasswordResetEmail = (props: PasswordResetEmailProps) => {
             {/* Alternative Link */}
             <Section className="mb-[32px]">
               <Text className="text-[14px] text-gray-600 leading-[20px] mb-[8px]">
-                If the button doesn't work, you can copy and paste this link into your browser:
+                If the button doesn&apos;t work, you can copy and paste this link into your browser:
               </Text>
               <Link
                 href={resetUrl}
@@ -82,7 +81,7 @@ const PasswordResetEmail = (props: PasswordResetEmailProps) => {
                 🔒 Security Notice
               </Text>
               <Text className="text-[14px] text-gray-600 leading-[20px] m-0">
-                If you didn't request this password reset, please ignore this email. Your password will remain unchanged. For security, this reset link will expire in 24 hours.
+                If you didn&apos;t request this password reset, please ignore this email. Your password will remain unchanged. For security, this reset link will expire in 24 hours.
               </Text>
             </Section>
 

@@ -4,17 +4,17 @@ import FooterSection from "@/components/footer";
 import { HeroHeader } from "@/components/header";
 import HeroSection from "@/components/hero-section";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
     <main>
-     <ScrollProgress />
-    <HeroHeader />
-    <HeroSection />
-    <Features />
-    <CallToAction />
-    <FooterSection />
-   </main>
+      <ScrollProgress />
+      <HeroHeader />
+      <HeroSection />
+      <Features />
+      <CallToAction />
+      <FooterSection />
+    </main>
   );
 }

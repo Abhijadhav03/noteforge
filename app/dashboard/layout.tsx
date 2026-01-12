@@ -1,6 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { NuqsProvider } from '@/components/nuqs-provider'
 
 export default function DashboardLayout({
   children,
@@ -11,9 +11,9 @@ export default function DashboardLayout({
     <SidebarProvider>
       <AppSidebar />
       <main className="flex flex-1 flex-col">
-        <NuqsAdapter>
+        <NuqsProvider>
           {children}
-        </NuqsAdapter>
+        </NuqsProvider>
       </main>
     </SidebarProvider>
   );

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
@@ -24,7 +24,7 @@ const transitionVariants = {
                 type: 'spring',
                 bounce: 0.3,
                 duration: 1.5,
-            },
+            } as const,
         },
     },
 }
@@ -43,22 +43,22 @@ export default function HeroSection() {
                 </div>
                 <section>
                     <div className="relative pt-24">
-                        
+
                         <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"></div>
-                       
+
                         <div className="mx-auto max-w-5xl px-6">
 
                             <div className="sm:mx-auto lg:mr-auto lg:mt-0">
                                 <SparklesText>
-                                
-                                <TextEffect
-                                    preset="fade-in-blur"
-                                    speedSegment={0.3}
-                                    as="h1"
-                                    className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16">
-                                  
-                                  🔥 Forge Smarter Notes. Code Better.
-                                </TextEffect>
+
+                                    <TextEffect
+                                        preset="fade-in-blur"
+                                        speedSegment={0.3}
+                                        as="h1"
+                                        className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16">
+
+                                        🔥 Forge Smarter Notes. Code Better.
+                                    </TextEffect>
                                 </SparklesText>
                                 <TextEffect
                                     per="line"
@@ -67,9 +67,9 @@ export default function HeroSection() {
                                     delay={0.5}
                                     as="p"
                                     className="mt-8 max-w-2xl text-pretty text-lg">
-                                   Supercharge your workflow with NoteForge — the smartest way to capture, organize, and link dev notes, code snippets, and technical insights.
-                                    </TextEffect>
-                                
+                                    Supercharge your workflow with NoteForge — the smartest way to capture, organize, and link dev notes, code snippets, and technical insights.
+                                </TextEffect>
+
                                 <AnimatedGroup
                                     variants={{
                                         container: {
@@ -95,7 +95,7 @@ export default function HeroSection() {
                                             </Link>
                                         </Button>
                                     </div>
-                                    
+
                                 </AnimatedGroup>
                             </div>
                         </div>
@@ -119,14 +119,14 @@ export default function HeroSection() {
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                                     <Image
                                         className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                                        src="/mail2.png"
+                                        src="/dark.webp"
                                         alt="app screen"
                                         width="2700"
                                         height="1440"
                                     />
                                     <Image
                                         className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                                        src="/mail2-light.png"
+                                        src="/light.webp"
                                         alt="app screen"
                                         width="2700"
                                         height="1440"
@@ -136,7 +136,7 @@ export default function HeroSection() {
                         </AnimatedGroup>
                     </div>
                 </section>
-              
+
             </main>
         </>
     )

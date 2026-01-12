@@ -13,7 +13,7 @@ export const auth = betterAuth({
     emailVerification: {
         sendVerificationEmail: async ({ user, url }) => {
             const { data, error } = await resend.emails.send({
-  from: 'NoteForge <onboarding@resend.dev>',
+  from: 'NoteForge <verify@noteforge.dpdns.org>',
   to: [user.email],
   subject: 'Verify your email address',
   react: VerificationEmail({
@@ -39,7 +39,7 @@ console.error("RESEND ERROR:", error);
         enabled: true,
         sendResetPassword: async ({ user, url }) => {
             await resend.emails.send({
-                from: 'NoteForge <onboarding@resend.dev>',
+                from: 'NoteForge <reset@noteforge.dpdns.org>',
                 to: [user.email],
                 subject: 'Reset your password',
                 react: PasswordResetEmail({ userName: user.name, resetUrl: url, requestTime: new Date().toLocaleString() }),

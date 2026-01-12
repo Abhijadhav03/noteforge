@@ -10,6 +10,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const auth = betterAuth({
+     baseURL: process.env.NODE_ENV === "production" ? "https://noteforge-six.vercel.app" : undefined,
     emailVerification: {
         sendVerificationEmail: async ({ user, url }) => {
             const { data, error } = await resend.emails.send({

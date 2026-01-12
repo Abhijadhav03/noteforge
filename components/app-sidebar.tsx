@@ -35,8 +35,8 @@ export async function AppSidebar({
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <Link href="/dashboard" className="flex items-center gap-2 pl-2">
-          <Image src="/noteforge-logo.png" alt="Logo" width={32} height={32} />
+        <Link href="/dashboard" className="flex items-center gap-2 pl-2 mt-4 mb-4">
+          <Image src="/noteforge-logo.svg" alt="Logo" width={28} height={28} />
           <h2>NoteForge</h2>
         </Link>
 
@@ -45,7 +45,7 @@ export async function AppSidebar({
         </React.Suspense>
       </SidebarHeader>
       <SidebarContent className="gap-0">
-        {/* <SidebarData data={data} /> */}
+        <SidebarData data={data} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
